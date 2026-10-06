@@ -106,3 +106,100 @@ export async function updateStaffMember(staffId, updateData, token) {
   }
   return result;
 }
+
+// Order Management (Staff & Admin)
+export async function fetchOrders(token) {
+  const response = await fetch(`${API_BASE_URL}/orders`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to fetch orders');
+  return result; // { success, data: [...] }
+}
+
+export async function fetchOrderDetails(orderId, token) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to load order details');
+  return result;
+}
+
+export async function createFactoryOrder(orderData, token) {
+  const response = await fetch(`${API_BASE_URL}/orders`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(orderData),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to create order');
+  return result;
+}
+
+export async function advanceOrderStage(orderId, stageData, token) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/advance`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(stageData || {}),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to advance stage');
+  return result;
+}
+
+export async function submitQCInspection(orderId, qcData, token) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/qc`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(qcData),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to record QC inspection');
+  return result;
+}
+
+export async function submitDispatch(orderId, dispatchData, token) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/dispatch`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(dispatchData),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to process dispatch');
+  return result;
+}
+
+export async function broadcastDelay(orderId, delayData, token) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/delay`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(delayData),
+  });
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to broadcast delay alert');
+  return result;
+}
+
+// Public Customer Tracking Link (No login required)
+export async function fetchPublicTracking(orderId) {
+  const response = await fetch(`${API_BASE_URL}/orders/${orderId}/public`);
+  const result = await response.json();
+  if (!response.ok) throw new Error(result.message || 'Failed to load tracking info');
+  return result;
+}

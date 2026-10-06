@@ -5,6 +5,7 @@ import { testConnection } from './config/db.js';
 import enquiryRoutes from './routes/enquiryRoutes.js';
 import authRoutes from './routes/authRoutes.js';
 import staffRoutes from './routes/staffRoutes.js';
+import orderRoutes from './routes/orderRoutes.js';
 
 dotenv.config();
 
@@ -30,6 +31,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/enquiries', enquiryRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/staff', staffRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Root Endpoint
 app.get('/', (req, res) => {

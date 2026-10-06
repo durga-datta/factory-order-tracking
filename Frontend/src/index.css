@@ -1,1 +1,278 @@
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  color-scheme: light dark;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
+/* Custom scrollbars for modern cross-platform usability */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Eye-Catching Smartphone & Hero Animations */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes float-badge-top {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-7px) rotate(1.5deg);
+  }
+}
+
+@keyframes float-badge-bottom {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(7px) rotate(-1.5deg);
+  }
+}
+
+@keyframes pulse-halo {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.65;
+    transform: scale(1.06);
+  }
+}
+
+@keyframes typing-dot {
+  0%, 60%, 100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 4.5s ease-in-out infinite;
+}
+
+.animate-float-badge-top {
+  animation: float-badge-top 3.6s ease-in-out infinite;
+}
+
+.animate-float-badge-bottom {
+  animation: float-badge-bottom 4.2s ease-in-out infinite;
+}
+
+.animate-pulse-halo {
+  animation: pulse-halo 4s ease-in-out infinite;
+}
+
+.animate-typing-dot-1 {
+  animation: typing-dot 1.2s infinite ease-in-out;
+}
+.animate-typing-dot-2 {
+  animation: typing-dot 1.2s infinite ease-in-out 0.2s;
+}
+.animate-typing-dot-3 {
+  animation: typing-dot 1.2s infinite ease-in-out 0.4s;
+}
+
+/* Gradient flow for Hero Big Text */
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-flow {
+  background-size: 200% 200%;
+  animation: gradient-flow 6s ease infinite;
+}
+
+/* Glow pulse for text & glowing backdrops */
+@keyframes glow-pulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.25));
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(16, 185, 129, 0.65));
+  }
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* Question word flip animation */
+@keyframes flip-in {
+  0% {
+    opacity: 0;
+    transform: translateY(12px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-flip-in {
+  animation: flip-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating shadow under levitating phone */
+@keyframes shadow-breathe {
+  0%, 100% {
+    transform: scaleX(0.82) scaleY(0.75);
+    opacity: 0.25;
+  }
+  50% {
+    transform: scaleX(1.05) scaleY(1.05);
+    opacity: 0.55;
+  }
+}
+
+.animate-shadow-breathe {
+  animation: shadow-breathe 4.5s ease-in-out infinite;
+}
+
+/* WhatsApp notification pop-down */
+@keyframes notification-slide {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.92);
+  }
+  15% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  85% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-12px) scale(0.96);
+  }
+}
+
+.animate-notification-pop {
+  animation: notification-slide 2.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Floating emoji reaction bubble */
+@keyframes reaction-pop {
+  0% {
+    transform: scale(0) translateY(8px);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.22) translateY(-2px);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-reaction-pop {
+  animation: reaction-pop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Striped production progress bar */
+@keyframes progress-stripe {
+  from {
+    background-position: 1rem 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+.animate-progress-stripe {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.18) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.18) 50%,
+    rgba(255, 255, 255, 0.18) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 1rem 1rem;
+  animation: progress-stripe 1.2s linear infinite;
+}
+
+/* Truck drive oscillation */
+@keyframes truck-drive {
+  0% {
+    transform: translateX(-3px);
+  }
+  50% {
+    transform: translateX(3px);
+  }
+  100% {
+    transform: translateX(-3px);
+  }
+}
+
+.animate-truck-drive {
+  animation: truck-drive 2s ease-in-out infinite;
+}
+
+/* Animated gradient border glow */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(16, 185, 129, 0.35);
+  }
+  50% {
+    border-color: rgba(6, 182, 212, 0.65);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
